@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>This is for you!</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #fce4ec;
+        font-family: "Comic Sans MS", cursive;
+        overflow: hidden;
+      }
+
+      .book-container {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        perspective: 1000px;
+      }
+
+      .book {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform-origin: left;
+        transition: transform 1s ease;
+      }
+
+      .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #ffebee;
+        border-radius: 10px;
+        box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+
+      .page-2 {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #ffebee;
+        border-radius: 10px;
+        box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+
+      .cover {
+        background-color: #e91e63;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        backface-visibility: hidden;
+      }
+
+      .inside-page {
+        transform: rotateY(-180deg);
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      @keyframes slideDown {
+        0% {
+          opacity: 0;
+          transform: translateX(-50%) translateY(-150px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(50px);
+        }
+      }
+
+      .open {
+        transform: rotateY(-180deg);
+      }
+
+      .congrats-text {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        text-align: center;
+        transform: translateX(-50%);
+        font-size: 50px;
+        font-weight: bold;
+        color: #ff4081;
+        opacity: 0;
+        animation: slideDown 2s ease forwards;
+      }
+
+      .balloon {
+        position: absolute;
+        bottom: -100px;
+        width: 50px;
+        height: 70px;
+        background-color: #ff80ab;
+        border-radius: 50%;
+        animation: fly 5s ease-in-out forwards;
+        opacity: 0.9;
+      }
+
+      .balloon::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+        width: 10px;
+        height: 20px;
+        background-color: #ff80ab;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+
+      @keyframes fly {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh);
+          opacity: 0;
+        }
+      }
+
+      .firework {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ffab40;
+        animation: explode 1s ease-out forwards;
+      }
+
+      @keyframes explode {
+        0% {
+          transform: scale(0.5);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: #e91e63;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #d81b60;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="book-container" style="margin-left: 300px" onclick="openBook()">
+      <div class="book" id="book">
+        <div class="page cover">Open The Book!</div>
+        <div class="page inside-page">
+          <h1>Happy Graduation!</h1>
+          <button onclick="showCelebration(event)">Click Here 🎉</button>
+        </div>
+      </div>
+      <div class="page-2">
+        <div style="text-align: center">
+          <b>Congrats on graduating! 🎉</b>
+          <br /><br />
+          I’m so proud of everything you’ve achieved. Can’t wait to see all the
+          amazing things you’ll do next.
+
+          <br />
+          <br />
+          So, when are we going to the bookstore?
+        </div>
+      </div>
+    </div>
+
+    <div class="congrats-text" id="congratsText" hidden>
+      Congrats for your graduate!
+    </div>
+
+    <script>
+      function openBook() {
+        const book = document.getElementById("book");
+        book.classList.toggle("open");
+      }
+
+      function showCelebration(event) {
+        event.stopPropagation();
+        showBalloons();
+        showFireworks();
+        showCongratsText();
+      }
+
+      function showBalloons() {
+        const container = document.querySelector(".book-container");
+
+        for (let i = 0; i < 15; i++) {
+          const balloon = document.createElement("div");
+          balloon.className = "balloon";
+          if (Math.random() < 0.5) {
+            balloon.style.left = `${Math.random() * 50}%`;
+          } else {
+            balloon.style.right = `${Math.random() * 180}%`;
+          }
+          balloon.style.animationDelay = `${Math.random() * 1.5}s`;
+          container.appendChild(balloon);
+
+          setTimeout(() => {
+            balloon.remove();
+          }, 5000);
+        }
+      }
+
+      function showFireworks() {
+        const container = document.querySelector(".book-container");
+
+        for (let i = 0; i < 15; i++) {
+          const firework = document.createElement("div");
+          firework.className = "firework";
+          if (Math.random() < 0.5) {
+            firework.style.left = `${Math.random() * 40}%`;
+          } else {
+            firework.style.right = `${Math.random() * 190}%`;
+          }
+
+          firework.style.top = `${Math.random() * -60}%`;
+          firework.style.backgroundColor = `hsl(${
+            Math.random() * 360
+          }, 100%, 50%)`;
+          container.appendChild(firework);
+
+          setTimeout(() => {
+            firework.remove();
+          }, 3000);
+        }
+      }
+
+      function showCongratsText() {
+        const text = document.getElementById("congratsText");
+        text.hidden = false;
+        text.style.opacity = "1";
+        text.style.animation = "slideDown 2s ease forwards";
+
+        setTimeout(() => {
+          text.style.opacity = "0";
+          text.hidden = true;
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
