@@ -17,9 +17,10 @@
 
       .book-container {
         position: relative;
-        width: 300px;
-        height: 400px;
+        width: 250px; /* Adjusted width for smaller screens */
+        height: 350px; /* Adjusted height for smaller screens */
         perspective: 1000px;
+        margin-left: 300px;
       }
 
       .book {
@@ -38,7 +39,8 @@
         background-color: #ffebee;
         border-radius: 10px;
         box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
-        padding: 20px;
+        padding: 15px; /* Reduced padding */
+        font-size: 16px; /* Smaller font size */
       }
 
       .page-2 {
@@ -49,7 +51,8 @@
         background-color: #ffebee;
         border-radius: 10px;
         box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.2);
-        padding: 20px;
+        padding: 15px; /* Reduced padding */
+        font-size: 16px; /* Smaller font size */
       }
 
       .cover {
@@ -58,7 +61,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
+        font-size: 20px; /* Reduced font size */
         font-weight: bold;
         backface-visibility: hidden;
       }
@@ -70,7 +73,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding: 20px;
+        padding: 15px; /* Reduced padding */
       }
 
       @keyframes slideDown {
@@ -90,11 +93,11 @@
 
       .congrats-text {
         position: absolute;
-        top: 20px;
+        top: 10px; /* Adjusted positioning */
         left: 50%;
         text-align: center;
         transform: translateX(-50%);
-        font-size: 50px;
+        font-size: 30px; /* Reduced font size */
         font-weight: bold;
         color: #ff4081;
         opacity: 0;
@@ -104,8 +107,8 @@
       .balloon {
         position: absolute;
         bottom: -100px;
-        width: 50px;
-        height: 70px;
+        width: 40px; /* Reduced balloon size */
+        height: 60px; /* Reduced balloon size */
         background-color: #ff80ab;
         border-radius: 50%;
         animation: fly 5s ease-in-out forwards;
@@ -116,9 +119,9 @@
         content: "";
         position: absolute;
         bottom: -10px;
-        left: 20px;
-        width: 10px;
-        height: 20px;
+        left: 15px; /* Adjusted position */
+        width: 8px; /* Reduced balloon string width */
+        height: 15px; /* Reduced balloon string height */
         background-color: #ff80ab;
         clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       }
@@ -136,8 +139,8 @@
 
       .firework {
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 8px; /* Reduced firework size */
+        height: 8px; /* Reduced firework size */
         border-radius: 50%;
         background-color: #ffab40;
         animation: explode 1s ease-out forwards;
@@ -155,32 +158,108 @@
       }
 
       button {
-        padding: 10px 20px;
+        padding: 8px 16px; /* Reduced padding */
         border: none;
-        border-radius: 20px;
+        border-radius: 15px; /* Adjusted border radius */
         background-color: #e91e63;
         color: white;
-        font-size: 18px;
+        font-size: 16px; /* Reduced font size */
         cursor: pointer;
-        margin-top: 20px;
+        margin-top: 15px; /* Reduced margin */
       }
 
       button:hover {
         background-color: #d81b60;
       }
+
+      .title-graduate {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      @media (max-width: 600px) {
+        /* Additional media query for very small screens */
+        .book-container {
+          width: 160px;
+          height: 200px;
+          margin-left: 160px;
+        }
+
+        .book {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transform-origin: left;
+          transition: transform 1s ease;
+        }
+
+        .page {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #ffebee;
+          border-radius: 10px;
+          box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+          padding: 8px; /* Reduced padding */
+          font-size: 12px; /* Smaller font size */
+        }
+
+        .page-2 {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background-color: #ffebee;
+          border-radius: 10px;
+          box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.2);
+          padding: 8px; /* Reduced padding */
+          font-size: 12px; /* Smaller font size */
+        }
+
+        .cover {
+          background-color: #e91e63;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px; /* Reduced font size */
+          font-weight: bold;
+          backface-visibility: hidden;
+        }
+
+        .congrats-text {
+          font-size: 24px;
+        }
+
+        button {
+          font-size: 11px;
+          font-weight: bold;
+        }
+
+        .title-graduate {
+          font-size: 14px;
+          text-align: center;
+        }
+
+        .text-inside-graduate {
+          font-size: 11.5px;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="book-container" style="margin-left: 300px" onclick="openBook()">
+    <div class="book-container" onclick="openBook()">
       <div class="book" id="book">
         <div class="page cover">Open The Book!</div>
         <div class="page inside-page">
-          <h1>Happy Graduation!</h1>
+          <h1 class="title-graduate">Happy Graduation!</h1>
+          <!-- Reduced heading font size -->
           <button onclick="showCelebration(event)">Click Here 🎉</button>
         </div>
       </div>
       <div class="page-2">
-        <div style="text-align: center">
+        <div style="text-align: center" class="text-inside-graduate">
           <b>Congrats on graduating! 🎉</b>
           <br /><br />
           I’m so proud of everything you’ve achieved. Can’t wait to see all the
@@ -263,7 +342,7 @@
         setTimeout(() => {
           text.style.opacity = "0";
           text.hidden = true;
-        }, 3000);
+        }, 5000);
       }
     </script>
   </body>
