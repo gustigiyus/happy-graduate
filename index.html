@@ -177,12 +177,42 @@
         text-align: center;
       }
 
+      .arm {
+        display: inline-block;
+        width: 20px; /* Width of the arm */
+        height: 10px; /* Height of the arm */
+        background-color: #ffebee; /* Match the background color */
+        position: relative;
+        margin: 0 10px; /* Spacing between the text and arms */
+        border-radius: 5px;
+        animation: wave 1s infinite alternate; /* Animation effect */
+      }
+
+      .left {
+        transform: rotate(30deg); /* Left arm position */
+        animation-delay: 0.2s; /* Slight delay for effect */
+      }
+
+      .right {
+        transform: rotate(-30deg); /* Right arm position */
+        animation-delay: 0.2s; /* Slight delay for effect */
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translateY(8px);
+        }
+        100% {
+          transform: translateY(-8px); /* Wave movement */
+        }
+      }
+
       @media (max-width: 600px) {
         /* Additional media query for very small screens */
         .book-container {
           width: 160px;
           height: 200px;
-          margin-left: 160px;
+          margin-left: 164px;
         }
 
         .book {
@@ -223,9 +253,29 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 14px; /* Reduced font size */
+          font-size: 12px; /* Reduced font size */
           font-weight: bold;
           backface-visibility: hidden;
+        }
+
+        .arm {
+          display: inline-block;
+          width: 14px; /* Width of the arm */
+          height: 8px; /* Height of the arm */
+          background-color: #ffebee; /* Match the background color */
+          position: relative;
+          margin: 0 10px; /* Spacing between the text and arms */
+          border-radius: 5px;
+          animation: wave 1s infinite alternate; /* Animation effect */
+        }
+
+        @keyframes wave {
+          0% {
+            transform: translateY(6px);
+          }
+          100% {
+            transform: translateY(-6px); /* Wave movement */
+          }
         }
 
         .congrats-text {
@@ -233,7 +283,7 @@
         }
 
         button {
-          font-size: 11px;
+          font-size: 10px;
           font-weight: bold;
         }
 
@@ -251,7 +301,11 @@
   <body>
     <div class="book-container" onclick="openBook()">
       <div class="book" id="book">
-        <div class="page cover">Open The Book!</div>
+        <div class="page cover">
+          <div class="arm left"></div>
+          Open The Book!
+          <div class="arm right"></div>
+        </div>
         <div class="page inside-page">
           <h1 class="title-graduate">Happy Graduation!</h1>
           <!-- Reduced heading font size -->
